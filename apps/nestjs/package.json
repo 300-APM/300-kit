@@ -19,8 +19,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@300apm/nestjs-core": "workspace:*",
     "@mikro-orm/core": "catalog:",
-    "@mikro-orm/decorators": "catalog:",
     "@mikro-orm/migrations": "catalog:",
     "@mikro-orm/nestjs": "catalog:",
     "@mikro-orm/postgresql": "catalog:",
@@ -29,8 +29,7 @@
     "@nestjs/core": "catalog:",
     "@nestjs/platform-fastify": "catalog:",
     "reflect-metadata": "catalog:",
-    "rxjs": "catalog:",
-    "uuidv7": "catalog:"
+    "rxjs": "catalog:"
   },
   "devDependencies": {
     "@300apm/tsconfig": "workspace:*",
@@ -45,7 +44,7 @@
   },
   "mikro-orm": {
     "configPaths": [
-      "./src/core/database/mikro-orm.config.ts"
+      "./src/mikro-orm.config.ts"
     ]
   }
 }
