@@ -1,0 +1,192 @@
+# Architecture
+
+## Package Location
+
+```
+packages/core-harness/
+```
+
+The harness is a standard pnpm workspace package named `@300apm/core-harness`.
+It has zero runtime dependencies — every module uses only Node built-ins
+(`node:fs`, `node:path`, `node:url`, `node:process`). It compiles with `tsc`
+and publishes both `dist/` (compiled CLI) and `skills/` (raw markdown files).
+
+## Directory Layout
+
+```
+packages/core-harness/
+├── package.json                    # @300apm/core-harness, bin: 300-harness
+├── tsconfig.json                   # extends @300apm/tsconfig/node.json
+├── vitest.config.ts
+├── skills/                         # Source-of-truth skill markdown files
+│   ├── 300-design.md               #   8 skill files, each a slash command
+│   ├── 300-plan.md
+│   ├── 300-review.md
+│   ├── 300-qa.md
+│   ├── 300-ship.md
+│   ├── 300-retro.md
+│   ├── 300-guard.md
+│   └── 300-upgrade.md
+├── src/
+│   ├── cli.ts                      # #!/usr/bin/env node entry point
+│   ├── commands/
+│   │   ├── update.ts               # Orchestrates all sync operations
+│   │   └── status.ts               # Reports current harness state
+│   ├── sync/
+│   │   ├── skills.ts               # Symlink or copy skills to .claude/skills/
+│   │   ├── settings.ts             # Merge hooks into .claude/settings.json
+│   │   ├── claude-md.ts            # Update CLAUDE.md harness section
+│   │   ├── agents-md.ts            # Update AGENTS.md harness section
+│   │   └── codex.ts                # Maintain .codex/skills symlink
+│   ├── templates/
+│   │   ├── claude-md.ts            # Skill routing table template
+│   │   └── agents-md.ts            # Persona descriptions template
+│   ├── hooks/
+│   │   └── definitions.ts          # PreToolUse hook definitions
+│   └── utils/
+│       ├── context.ts              # Detect monorepo vs consumer
+│       ├── paths.ts                # Resolve project root, dirs, skills source
+│       ├── merge.ts                # Hook merging with user preservation
+│       └── markdown.ts             # Sentinel-based section replacement
+└── src/__tests__/
+    ├── context.test.ts
+    ├── skills.test.ts
+    ├── settings.test.ts
+    ├── markdown.test.ts
+    └── merge.test.ts
+```
+
+## Dual-Mode Operation
+
+The harness works in two contexts. The CLI auto-detects which mode it is in.
+
+### Monorepo Mode
+
+**Detected when:** The project root contains both `pnpm-workspace.yaml` and
+`packages/core-harness/skills/`.
+
+**Skills strategy:** Relative symlinks.
+
+```
+.claude/skills/300-review.md  ->  ../../packages/core-harness/skills/300-review.md
+```
+
+Editing a skill file in `packages/core-harness/skills/` is instantly visible to
+Claude Code — no rebuild, no re-run needed. This is why symlinks are used: true
+hot-reload during development.
+
+Stale symlinks (pointing to skills that no longer exist in source) are cleaned
+up automatically on each `update`.
+
+### Consumer Mode
+
+**Detected when:** The monorepo markers are absent (no `pnpm-workspace.yaml` or
+no `packages/core-harness/skills/` directory).
+
+**Skills strategy:** File copy with version stamps.
+
+When the CLI copies a skill file, it prepends a version stamp:
+
+```markdown
+<!-- @300-harness v0.0.1 -->
+# /300-review — Code Review
+...
+```
+
+This stamp serves as an ownership marker:
+
+- **Stamp present:** Harness-owned. Will be overwritten on next `update`.
+- **Stamp absent:** User-owned. Will be skipped (preserved) unless `--force`.
+
+This lets consumer projects customize skills by editing them and removing the
+stamp. See [Consumer Guide](./consumer-guide.md) for details.
+
+### Why Not Symlinks in Consumer Mode?
+
+pnpm uses a content-addressable store with hard links. Every `pnpm install`
+rebuilds `node_modules` from scratch, breaking any symlinks that point into it.
+Copies are the only stable option for consumer projects.
+
+## Files the Harness Manages
+
+| File | What the harness writes | What it preserves |
+|------|------------------------|-------------------|
+| `.claude/skills/300-*.md` | Skill content (symlink or copy) | Non-`300-*` files (e.g., `shared-dev.md`) |
+| `.claude/settings.json` | `hooks.PreToolUse` entries tagged `# @300-harness` | `attribution`, user-added hooks, all other keys |
+| `CLAUDE.md` | Content between `<!-- 300-harness:start -->` and `<!-- 300-harness:end -->` | Everything outside those markers |
+| `AGENTS.md` | Content between `<!-- 300-harness:start -->` and `<!-- 300-harness:end -->` | Everything outside those markers |
+| `.codex/skills` | Symlink to `../.claude/skills` | Non-symlink files in `.codex/` |
+
+The harness never touches files outside this list. It never modifies
+`package.json`, `tsconfig.json`, source code, or any other config file.
+
+## Sentinel Markers
+
+CLAUDE.md and AGENTS.md use HTML comment markers to delimit the harness-managed
+section:
+
+```markdown
+User-written content above is untouched.
+
+<!-- 300-harness:start -->
+This section is regenerated by `300-harness update`.
+Everything here is replaced on each run.
+<!-- 300-harness:end -->
+
+User-written content below is untouched.
+```
+
+**Behavior:**
+
+- If markers exist: content between them is replaced; everything outside is
+  preserved verbatim.
+- If markers do not exist: the harness block is appended to the end of the file.
+- Running `update` multiple times produces the same result (idempotent).
+
+## Hook Identification
+
+Harness-managed hooks are identified by the `# @300-harness` comment marker in
+their `hook_command` string. During `update`, the sync process:
+
+1. Reads the existing `settings.json`.
+2. Filters out all hooks whose `hook_command` contains `# @300-harness`.
+3. Appends the current harness hook definitions.
+4. Writes back.
+
+User-added hooks (those without the marker) are never removed or reordered.
+
+## Skills Source Resolution
+
+The CLI finds its own `skills/` directory using `import.meta.url`:
+
+```typescript
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const skillsSource = resolve(__dirname, '..', 'skills')
+```
+
+This resolves correctly in both contexts:
+
+- Monorepo: `packages/core-harness/dist/utils/paths.js` → `packages/core-harness/skills/`
+- Consumer: `node_modules/@300apm/core-harness/dist/utils/paths.js` → `node_modules/@300apm/core-harness/skills/`
+
+## Project Root Resolution
+
+`findProjectRoot()` walks up from `process.cwd()` looking for `package.json`.
+If it finds `pnpm-workspace.yaml` at the same level, that is the root. If it
+finds a `pnpm-workspace.yaml` one level up, that parent is the root. If it
+reaches the filesystem root without finding a workspace file, it returns the
+first directory that had a `package.json`.
+
+## Sync Execution Order
+
+`300-harness update` runs these operations in sequence:
+
+1. **detectContext()** — Determine monorepo or consumer mode.
+2. **syncSkills()** — Create symlinks (monorepo) or copy files (consumer).
+3. **syncSettings()** — Merge safety hooks into `.claude/settings.json`.
+4. **syncClaudeMd()** — Update the harness section in `CLAUDE.md`.
+5. **syncAgentsMd()** — Update the harness section in `AGENTS.md`.
+6. **syncCodex()** — Verify `.codex/skills` symlink.
+
+Each step is independent — a failure in one does not prevent the others from
+running.

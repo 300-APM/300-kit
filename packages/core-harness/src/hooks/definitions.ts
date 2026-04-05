@@ -1,0 +1,21 @@
+import type { HookEntry } from '../utils/merge.js'
+
+export const harnessHooks: Record<string, HookEntry[]> = {
+  PreToolUse: [
+    {
+      matcher: 'Bash',
+      hook_command:
+        'bash -c \'echo "$TOOL_INPUT" | grep -qE "git\\s+push.*--force.*\\b(main|master)\\b" && echo "BLOCK: force-push to main/master is prohibited # @300-harness" >&2 && exit 2 || true # @300-harness\'',
+    },
+    {
+      matcher: 'Bash',
+      hook_command:
+        'bash -c \'echo "$TOOL_INPUT" | grep -qE "git\\s+add.*\\.(env|pem|tfvars|clerk)\\b" && echo "BLOCK: staging secrets file is prohibited # @300-harness" >&2 && exit 2 || true # @300-harness\'',
+    },
+    {
+      matcher: 'Bash',
+      hook_command:
+        'bash -c \'echo "$TOOL_INPUT" | grep -qE "git\\s+(reset\\s+--hard|clean\\s+-f)" && echo "WARN: destructive git operation detected # @300-harness" >&2; exit 0 # @300-harness\'',
+    },
+  ],
+}

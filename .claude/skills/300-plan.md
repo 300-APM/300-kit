@@ -1,0 +1,1 @@
+../../packages/core-harness/skills/300-plan.md

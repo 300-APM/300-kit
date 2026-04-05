@@ -1,0 +1,26 @@
+{
+  "name": "@300apm/core-harness",
+  "version": "0.0.1",
+  "description": "Bootstrap and manage Claude Code skills, hooks, and config for 300-kit projects",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "300-harness": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:cov": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "dist",
+    "skills"
+  ],
+  "devDependencies": {
+    "@300apm/tsconfig": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
