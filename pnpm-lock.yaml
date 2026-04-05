@@ -281,9 +281,18 @@ importers:
       '@mikro-orm/decorators':
         specifier: 'catalog:'
         version: 7.0.8(@mikro-orm/core@7.0.8)(reflect-metadata@0.2.2)
+      '@mikro-orm/migrations':
+        specifier: 'catalog:'
+        version: 7.0.8(@mikro-orm/core@7.0.8)
       '@mikro-orm/nestjs':
         specifier: 'catalog:'
         version: 7.0.1(@mikro-orm/core@7.0.8)(@nestjs/common@11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.18(@nestjs/common@11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)
+      '@mikro-orm/postgresql':
+        specifier: 'catalog:'
+        version: 7.0.8(@mikro-orm/core@7.0.8)
+      '@mikro-orm/seeder':
+        specifier: 'catalog:'
+        version: 7.0.8(@mikro-orm/core@7.0.8)
       '@nestjs/common':
         specifier: 'catalog:'
         version: 11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2)
