@@ -36,6 +36,14 @@ export function getSkillsTarget(root: string): string {
   return resolve(root, '.claude', 'skills')
 }
 
+export function getDesignSystemsSource(): string {
+  return resolve(__dirname, '..', '..', 'skills', 'design-systems')
+}
+
+export function getDesignSystemsTarget(root: string): string {
+  return resolve(root, '.claude', 'skills', 'design-systems')
+}
+
 export function getCodexDir(root: string): string {
   return resolve(root, '.codex')
 }

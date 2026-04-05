@@ -10,5 +10,6 @@ Each skill activates a specialized persona with distinct priorities and constrai
 - **Release Engineer** (\`/300-ship\`): Safe, incremental releases — changesets, build verification, changelog review
 - **Engineering Coach** (\`/300-retro\`): Process improvement — what worked, what was painful, what to codify
 - **Safety Officer** (\`/300-guard\`): Read-only audit mode — reports state without making changes
-- **Harness Maintainer** (\`/300-upgrade\`): Self-maintenance — rebuild, sync, and verify the harness`
+- **Harness Maintainer** (\`/300-upgrade\`): Self-maintenance — rebuild, sync, and verify the harness
+- **Design System Curator** (\`/300-design-sync\`): Syncs design systems from awesome-design-md — one per company, no duplicates`
 }
