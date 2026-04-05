@@ -17,6 +17,9 @@
     "typecheck": "turbo run typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
+    "apply-rules": "turbo run typecheck format test && pnpm test:e2e",
+    "dev": "turbo watch dev --ui=stream",
+    "test:e2e": "turbo run test:e2e",
     "release": "turbo run build && changeset publish"
   },
   "devDependencies": {
