@@ -22,7 +22,10 @@
   "dependencies": {
     "@mikro-orm/core": "catalog:",
     "@mikro-orm/decorators": "catalog:",
+    "@mikro-orm/migrations": "catalog:",
     "@mikro-orm/nestjs": "catalog:",
+    "@mikro-orm/postgresql": "catalog:",
+    "@mikro-orm/seeder": "catalog:",
     "@nestjs/common": "catalog:",
     "uuidv7": "catalog:"
   },

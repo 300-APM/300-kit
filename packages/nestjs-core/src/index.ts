@@ -1,1 +1,1 @@
-export { BaseEntity, DatabaseModule } from './database/index.js'
+export { BaseEntity, DatabaseModule, defineDbConfig } from './database/index.js'
