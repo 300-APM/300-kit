@@ -1,0 +1,40 @@
+{
+  "name": "@300apm/nestjs-core",
+  "version": "0.0.1",
+  "description": "Core NestJS utilities for 300-kit applications",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:cov": "vitest run --coverage",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mikro-orm/core": "catalog:",
+    "@mikro-orm/decorators": "catalog:",
+    "@mikro-orm/migrations": "catalog:",
+    "@mikro-orm/nestjs": "catalog:",
+    "@mikro-orm/postgresql": "catalog:",
+    "@mikro-orm/seeder": "catalog:",
+    "@nestjs/common": "catalog:",
+    "uuidv7": "catalog:"
+  },
+  "devDependencies": {
+    "@300apm/tsconfig": "workspace:*",
+    "@swc/core": "catalog:",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "unplugin-swc": "catalog:",
+    "vitest": "catalog:"
+  }
+}

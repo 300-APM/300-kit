@@ -141,12 +141,12 @@ importers:
 
   apps/nestjs:
     dependencies:
+      '@300apm/nestjs-core':
+        specifier: workspace:*
+        version: link:../../packages/nestjs-core
       '@mikro-orm/core':
         specifier: 'catalog:'
         version: 7.0.8
-      '@mikro-orm/decorators':
-        specifier: 'catalog:'
-        version: 7.0.8(@mikro-orm/core@7.0.8)(reflect-metadata@0.2.2)
       '@mikro-orm/migrations':
         specifier: 'catalog:'
         version: 7.0.8(@mikro-orm/core@7.0.8)
@@ -174,9 +174,6 @@ importers:
       rxjs:
         specifier: 'catalog:'
         version: 7.8.2
-      uuidv7:
-        specifier: 'catalog:'
-        version: 1.2.1
     devDependencies:
       '@300apm/tsconfig':
         specifier: workspace:*
@@ -274,7 +271,53 @@ importers:
         version: 6.0.2
       vitest:
         specifier: 'catalog:'
-        version: 3.2.4(@types/node@25.5.2)(terser@5.46.1)
+        version: 3.2.4(@types/node@25.5.2)(jiti@2.6.1)(jsdom@29.0.1)(lightningcss@1.32.0)(terser@5.46.1)
+
+  packages/nestjs-core:
+    dependencies:
+      '@mikro-orm/core':
+        specifier: 'catalog:'
+        version: 7.0.8
+      '@mikro-orm/decorators':
+        specifier: 'catalog:'
+        version: 7.0.8(@mikro-orm/core@7.0.8)(reflect-metadata@0.2.2)
+      '@mikro-orm/migrations':
+        specifier: 'catalog:'
+        version: 7.0.8(@mikro-orm/core@7.0.8)
+      '@mikro-orm/nestjs':
+        specifier: 'catalog:'
+        version: 7.0.1(@mikro-orm/core@7.0.8)(@nestjs/common@11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.18(@nestjs/common@11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)
+      '@mikro-orm/postgresql':
+        specifier: 'catalog:'
+        version: 7.0.8(@mikro-orm/core@7.0.8)
+      '@mikro-orm/seeder':
+        specifier: 'catalog:'
+        version: 7.0.8(@mikro-orm/core@7.0.8)
+      '@nestjs/common':
+        specifier: 'catalog:'
+        version: 11.1.18(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      uuidv7:
+        specifier: 'catalog:'
+        version: 1.2.1
+    devDependencies:
+      '@300apm/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@swc/core':
+        specifier: 'catalog:'
+        version: 1.15.24
+      '@types/node':
+        specifier: 'catalog:'
+        version: 25.5.2
+      typescript:
+        specifier: 'catalog:'
+        version: 6.0.2
+      unplugin-swc:
+        specifier: 'catalog:'
+        version: 1.5.9(@swc/core@1.15.24)(rollup@4.60.1)
+      vitest:
+        specifier: 'catalog:'
+        version: 3.2.4(@types/node@25.5.2)(jiti@2.6.1)(jsdom@29.0.1)(lightningcss@1.32.0)(terser@5.46.1)
 
   packages/tsconfig: {}
 
