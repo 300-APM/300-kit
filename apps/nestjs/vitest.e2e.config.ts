@@ -5,7 +5,7 @@ export default defineConfig({
   test: {
     globals: false,
     root: '.',
-    exclude: ['**/node_modules/**', '**/dist/**', '**/*.e2e.spec.ts'],
+    include: ['**/*.e2e.spec.ts'],
   },
   plugins: [swc.vite()],
 })
