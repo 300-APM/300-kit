@@ -23,6 +23,7 @@ out
 
 # LLM Harness
 .claude/*
+!.claude/settings.json
 !.claude/skills/
 .codex/*
 !.codex/skills/
