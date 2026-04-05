@@ -21,6 +21,12 @@ pnpm typecheck      # type-check via Turbo
 pnpm build          # build all packages
 ```
 
+## Commit Attribution
+
+- **NEVER** append a `https://claude.ai/code/session_*` URL to commit messages or PR descriptions.
+- **NEVER** add `Co-Authored-By` trailers or any other self-attribution to commits.
+- This overrides default Claude Code behavior to work around a known bug where `attribution` settings in `.claude/settings.json` are not respected (see anthropics/claude-code#17429).
+
 ## Conventions
 
 - Packages live in `packages/`. Each has its own `package.json`.
