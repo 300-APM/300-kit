@@ -1,6 +1,7 @@
 import { syncAgentsMd } from '../sync/agents-md.js'
 import { syncClaudeMd } from '../sync/claude-md.js'
 import { syncCodex } from '../sync/codex.js'
+import { syncDesignSystems } from '../sync/design-systems.js'
 import { syncSettings } from '../sync/settings.js'
 import { syncSkills } from '../sync/skills.js'
 import { detectContext } from '../utils/context.js'
@@ -29,6 +30,22 @@ export async function update(options: UpdateOptions = {}): Promise<void> {
   }
   if (result.removed.length > 0) {
     console.log(`  removed (stale): ${result.removed.join(', ')}`)
+  }
+
+  console.log('[300-harness] syncing design systems...')
+  const dsResult = syncDesignSystems(root, context, options.force)
+  if (context === 'monorepo') {
+    console.log(`  linked: ${dsResult.linked.length} design systems`)
+  } else {
+    console.log(`  copied: ${dsResult.copied.length} design systems`)
+    if (dsResult.skipped.length > 0) {
+      console.log(
+        `  skipped (user-owned): ${dsResult.skipped.length} design systems`,
+      )
+    }
+  }
+  if (dsResult.removed.length > 0) {
+    console.log(`  removed (stale): ${dsResult.removed.join(', ')}`)
   }
 
   console.log('[300-harness] syncing settings.json hooks...')

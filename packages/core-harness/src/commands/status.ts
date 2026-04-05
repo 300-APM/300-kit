@@ -6,6 +6,7 @@ import { isHarnessHook, type SettingsJson } from '../utils/merge.js'
 import {
   findProjectRoot,
   getClaudeDir,
+  getDesignSystemsTarget,
   getSkillsSource,
   getSkillsTarget,
 } from '../utils/paths.js'
@@ -47,6 +48,26 @@ export async function status(): Promise<void> {
       const isDefault = /^<!-- @300-harness v[\d.]+ -->/.test(content)
       console.log(`  [${isDefault ? 'DEFAULT' : 'CUSTOM'}]  ${skill}`)
     }
+  }
+
+  // Design systems status
+  const dsTarget = getDesignSystemsTarget(root)
+  if (existsSync(dsTarget)) {
+    const dsFiles = readdirSync(dsTarget).filter((f) =>
+      f.endsWith('.design.md'),
+    )
+    console.log(`\nDesign Systems (${dsFiles.length} available):`)
+    if (dsFiles.length <= 10) {
+      for (const file of dsFiles) {
+        const name = file.replace('.design.md', '')
+        console.log(`  ${name}`)
+      }
+    } else {
+      const sample = dsFiles.slice(0, 5).map((f) => f.replace('.design.md', ''))
+      console.log(`  ${sample.join(', ')} ... and ${dsFiles.length - 5} more`)
+    }
+  } else {
+    console.log('\nDesign Systems: [MISSING] .claude/skills/design-systems/')
   }
 
   // Settings status
