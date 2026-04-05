@@ -1,1 +1,6 @@
-export { BaseEntity, DatabaseModule, defineDbConfig } from './database/index.js'
+export {
+  BaseEntity,
+  DatabaseModule,
+  defineDbConfig,
+  MikroOrmModule,
+} from './database/index.js'

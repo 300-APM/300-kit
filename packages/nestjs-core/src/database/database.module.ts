@@ -9,6 +9,9 @@ export class DatabaseModule {
     return {
       module: DatabaseModule,
       imports: [MikroOrmModule.forRoot(config)],
+      exports: [MikroOrmModule],
     }
   }
 }
+
+export { MikroOrmModule }
