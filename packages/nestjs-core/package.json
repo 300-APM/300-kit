@@ -27,6 +27,7 @@
     "@mikro-orm/postgresql": "catalog:",
     "@mikro-orm/seeder": "catalog:",
     "@nestjs/common": "catalog:",
+    "@nestjs/core": "catalog:",
     "uuidv7": "catalog:"
   },
   "devDependencies": {
