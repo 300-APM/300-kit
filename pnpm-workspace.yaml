@@ -5,18 +5,39 @@ packages:
 catalog:
   "@biomejs/biome": "^2.4.10"
   "@changesets/cli": "^2.30.0"
+  "@mikro-orm/cli": "^7.0.8"
+  "@mikro-orm/core": "^7.0.8"
+  "@mikro-orm/decorators": "^7.0.8"
+  "@mikro-orm/migrations": "^7.0.8"
+  "@mikro-orm/nestjs": "^7.0.1"
+  "@mikro-orm/postgresql": "^7.0.8"
+  "@mikro-orm/seeder": "^7.0.8"
   "@nestjs/cli": "^11.0.17"
   "@nestjs/common": "^11.1.18"
   "@nestjs/core": "^11.1.18"
   "@nestjs/platform-fastify": "^11.1.18"
   "@nestjs/testing": "^11.1.18"
-  '@swc/core': ^1.15.24
-  '@types/node': ^25.5.2
+  "@swc/core": "^1.15.24"
+  "@tailwindcss/postcss": "^4.2.2"
+  "@testing-library/dom": "^10.4.1"
+  "@testing-library/jest-dom": "^6.9.1"
+  "@testing-library/react": "^16.3.2"
+  "@types/node": "^25.5.2"
+  "@types/react": "^19.2.14"
+  "@types/react-dom": "^19.2.3"
+  "@vitejs/plugin-react": "^5.2.0"
+  jsdom: "^29.0.1"
+  next: "^16.2.2"
+  react: "^19.2.4"
+  react-dom: "^19.2.4"
   reflect-metadata: "^0.2.2"
   rxjs: "^7.8.2"
+  tailwindcss: "^4.2.2"
   turbo: "^2.9.3"
   typescript: "^6.0.2"
-  unplugin-swc: ^1.5.9
+  unplugin-swc: "^1.5.9"
+  uuidv7: ^1.2.1
+  vite-tsconfig-paths: "^6.1.1"
   vitest: "^3.2.4"
 
 catalogMode: strict
