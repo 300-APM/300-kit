@@ -1,4 +1,4 @@
-import { BaseRepository } from './base.repository.js'
+import { BaseRepository } from '../database/base.repository.js'
 import type { TenantAwareEntity } from './tenant-aware.entity.js'
 
 export class TenantRepository<

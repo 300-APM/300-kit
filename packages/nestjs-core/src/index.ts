@@ -1,11 +1,10 @@
 export {
   BaseEntity,
+  BaseRepository,
   DatabaseModule,
   defineDbConfig,
   MikroOrmModule,
 } from './database/index.js'
-
-export { BaseRepository } from './tenants/base.repository.js'
 export { Tenant } from './tenants/tenant.entity.js'
 export { TenantGuard } from './tenants/tenant.guard.js'
 export {
