@@ -26,7 +26,7 @@ out
 !.claude/settings.json
 !.claude/skills/
 .codex/*
-!.codex/skills/
+!.codex/skills
 
 # Logs
 logs
