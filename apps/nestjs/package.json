@@ -29,7 +29,8 @@
     "@nestjs/core": "catalog:",
     "@nestjs/platform-fastify": "catalog:",
     "reflect-metadata": "catalog:",
-    "rxjs": "catalog:"
+    "rxjs": "catalog:",
+    "uuidv7": "catalog:"
   },
   "devDependencies": {
     "@300apm/tsconfig": "workspace:*",
