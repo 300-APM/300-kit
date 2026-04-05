@@ -1,6 +1,33 @@
 {
-  "name": "300apm/300-kit",
+  "name": "@300apm/300-kit",
   "version": "0.0.0",
+  "private": true,
+  "type": "module",
   "author": "Jason Zhang",
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "build": "turbo run build",
+    "check": "biome check .",
+    "check:fix": "biome check --fix .",
+    "format": "biome format --fix .",
+    "lint": "biome lint .",
+    "test": "turbo run test",
+    "test:cov": "turbo run test:cov",
+    "typecheck": "turbo run typecheck",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@changesets/cli": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "volta": {
+    "node": "24.0.0",
+    "pnpm": "10.33.0"
+  }
 }

@@ -1,11 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "NestJS",
+  "display": "Node",
   "extends": "./base.json",
   "compilerOptions": {
-    "target": "ES2024",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "types": ["node"],
     "outDir": "dist",
     "rootDir": "src"
