@@ -1,11 +1,15 @@
 packages:
+  - apps/*
   - packages/*
-
-catalogMode: strict
 
 catalog:
   "@biomejs/biome": "^2.4.10"
   "@changesets/cli": "^2.30.0"
+  '@swc/core': ^1.15.24
+  '@types/node': ^25.5.2
   turbo: "^2.9.3"
   typescript: "^6.0.2"
+  unplugin-swc: ^1.5.9
   vitest: "^3.2.4"
+
+catalogMode: strict
