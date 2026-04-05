@@ -17,7 +17,9 @@
     "typecheck": "turbo run typecheck",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build && changeset publish"
+    "release": "turbo run build && changeset publish",
+    "harness:update": "node packages/core-harness/dist/cli.js update",
+    "harness:status": "node packages/core-harness/dist/cli.js status"
   },
   "devDependencies": {
     "@biomejs/biome": "catalog:",
