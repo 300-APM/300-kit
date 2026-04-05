@@ -1,0 +1,10 @@
+{
+  "name": "@300apm/tsconfig",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./base.json": "./src/base.json",
+    "./nextjs.json": "./src/nextjs.json",
+    "./fastify.json": "./src/fastify.json"
+  }
+}

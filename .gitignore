@@ -1,0 +1,88 @@
+# .env
+.env*
+!.env.defaults
+!.env.example
+
+# Build
+build
+dist
+out
+
+# Editors
+.c9
+.classpath
+.idea
+.projectx
+.settings
+.vscsode
+*.launch
+*.sublime-workspace
+
+# JS/TS
+*.tsbuildinfo
+
+# LLM Harness
+.claude/*
+!.claude/skills/
+.codex/*
+!.codex/skills/
+
+# Logs
+logs
+*.log
+
+# MacOS
+.DS_Store
+
+# NextJS
+.next
+.next-e2e
+next-env.d.ts
+
+# NodeJS
+node_modules
+
+# Package Managers
+.pnpm-store
+npm-debug.log*
+pnpm-debug.log*
+
+# Prior Art
+.prior-art
+
+# Secrets
+*.clerk
+*.pem
+
+# Temp
+dev/null
+temp
+*.temp
+*.swp
+*.swo
+
+# Terraform
+*.tfvars
+*.tfstate
+*.tfstate.backup
+.terraform
+!*.tfvars.example
+!*.tfstate.example
+!*.tfstate.backup.example
+
+# Tests
+.last-run.json
+.nyc_output
+coverage
+test-results
+
+# Turborepo
+.turbo
+
+# Vercel
+.vercel
+
+# Windows
+ehthumbs.db
+Desktop.ini
+Thumbs.db
