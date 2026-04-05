@@ -10,5 +10,7 @@
     "./nestjs.json": "./src/nestjs.json",
     "./nextjs.json": "./src/nextjs.json"
   },
-  "files": ["src"]
+  "files": [
+    "src"
+  ]
 }
