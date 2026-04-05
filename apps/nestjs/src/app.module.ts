@@ -1,4 +1,4 @@
-import { DatabaseModule } from '@300apm/nestjs-core/database'
+import { DatabaseModule } from '@300apm/nestjs-core/database/database.module'
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller.js'
 import { AppService } from './app.service.js'

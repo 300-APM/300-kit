@@ -6,17 +6,7 @@ import {
 } from '@nestjs/common'
 import { APP_GUARD } from '@nestjs/core'
 import { TenantGuard } from './tenant.guard.js'
-import {
-  TENANT_HEADER,
-  TENANT_REQUEST_KEY,
-  TenantMiddleware,
-} from './tenant.middleware.js'
-
-export { Tenant } from './tenant.entity.js'
-export { TenantGuard } from './tenant.guard.js'
-export { TenantRepository } from './tenant.repository.js'
-export { TenantAwareEntity } from './tenant-aware.entity.js'
-export { TENANT_HEADER, TENANT_REQUEST_KEY, TenantMiddleware }
+import { TenantMiddleware } from './tenant.middleware.js'
 
 export interface TenantsModuleOptions {
   /** Route paths to exclude from the tenant guard (e.g. health checks). */
