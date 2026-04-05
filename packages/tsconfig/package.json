@@ -1,10 +1,14 @@
 {
   "name": "@300apm/tsconfig",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "description": "Shared TypeScript configurations for @300apm projects",
+  "license": "MIT",
+  "type": "module",
   "exports": {
     "./base.json": "./src/base.json",
-    "./nextjs.json": "./src/nextjs.json",
-    "./fastify.json": "./src/fastify.json"
-  }
+    "./node.json": "./src/node.json",
+    "./nestjs.json": "./src/nestjs.json",
+    "./nextjs.json": "./src/nextjs.json"
+  },
+  "files": ["src"]
 }
