@@ -5,43 +5,11 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    "./database/base.entity": {
-      "types": "./dist/database/base.entity.d.ts",
-      "import": "./dist/database/base.entity.js"
-    },
-    "./database/base.repository": {
-      "types": "./dist/database/base.repository.d.ts",
-      "import": "./dist/database/base.repository.js"
-    },
-    "./database/database.module": {
+    "./database": {
       "types": "./dist/database/database.module.d.ts",
       "import": "./dist/database/database.module.js"
     },
-    "./database/mikro-orm.config": {
-      "types": "./dist/database/mikro-orm.config.d.ts",
-      "import": "./dist/database/mikro-orm.config.js"
-    },
-    "./tenants/tenant.entity": {
-      "types": "./dist/tenants/tenant.entity.d.ts",
-      "import": "./dist/tenants/tenant.entity.js"
-    },
-    "./tenants/tenant-aware.entity": {
-      "types": "./dist/tenants/tenant-aware.entity.d.ts",
-      "import": "./dist/tenants/tenant-aware.entity.js"
-    },
-    "./tenants/tenant.guard": {
-      "types": "./dist/tenants/tenant.guard.d.ts",
-      "import": "./dist/tenants/tenant.guard.js"
-    },
-    "./tenants/tenant.middleware": {
-      "types": "./dist/tenants/tenant.middleware.d.ts",
-      "import": "./dist/tenants/tenant.middleware.js"
-    },
-    "./tenants/tenant.repository": {
-      "types": "./dist/tenants/tenant.repository.d.ts",
-      "import": "./dist/tenants/tenant.repository.js"
-    },
-    "./tenants/tenants.module": {
+    "./tenants": {
       "types": "./dist/tenants/tenants.module.d.ts",
       "import": "./dist/tenants/tenants.module.js"
     }

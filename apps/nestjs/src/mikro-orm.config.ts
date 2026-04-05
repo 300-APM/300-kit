@@ -1,3 +1,3 @@
-import { defineDbConfig } from '@300apm/nestjs-core/database/mikro-orm.config'
+import { defineDbConfig } from '@300apm/nestjs-core/database'
 
 export default defineDbConfig({ dbName: process.env.DB_NAME ?? '300kit' })
