@@ -5,6 +5,13 @@ packages:
 catalog:
   "@biomejs/biome": "^2.4.10"
   "@changesets/cli": "^2.30.0"
+  "@mikro-orm/cli": "^7.0.8"
+  "@mikro-orm/core": "^7.0.8"
+  "@mikro-orm/decorators": "^7.0.8"
+  "@mikro-orm/migrations": "^7.0.8"
+  "@mikro-orm/nestjs": "^7.0.1"
+  "@mikro-orm/postgresql": "^7.0.8"
+  "@mikro-orm/seeder": "^7.0.8"
   "@nestjs/cli": "^11.0.17"
   "@nestjs/common": "^11.1.18"
   "@nestjs/core": "^11.1.18"

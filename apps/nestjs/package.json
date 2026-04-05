@@ -11,11 +11,20 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main.js",
+    "dev": "nest start --watch",
+    "format": "biome format --fix .",
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
+    "test:e2e": "vitest run --config vitest.e2e.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@mikro-orm/core": "catalog:",
+    "@mikro-orm/decorators": "catalog:",
+    "@mikro-orm/migrations": "catalog:",
+    "@mikro-orm/nestjs": "catalog:",
+    "@mikro-orm/postgresql": "catalog:",
+    "@mikro-orm/seeder": "catalog:",
     "@nestjs/common": "catalog:",
     "@nestjs/core": "catalog:",
     "@nestjs/platform-fastify": "catalog:",
@@ -24,6 +33,7 @@
   },
   "devDependencies": {
     "@300apm/tsconfig": "workspace:*",
+    "@mikro-orm/cli": "catalog:",
     "@nestjs/cli": "catalog:",
     "@nestjs/testing": "catalog:",
     "@swc/core": "catalog:",
@@ -31,5 +41,10 @@
     "typescript": "catalog:",
     "unplugin-swc": "catalog:",
     "vitest": "catalog:"
+  },
+  "mikro-orm": {
+    "configPaths": [
+      "./src/core/database/mikro-orm.config.ts"
+    ]
   }
 }
